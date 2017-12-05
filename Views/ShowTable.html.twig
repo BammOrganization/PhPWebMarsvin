@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Marsvine service</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<style>
+    /* http://www.thesepapersites.com/2016/10/18/style-html-link-button/ */
+    .link-btn {
+        font-size: 12px;
+        color: white;
+        background: #f44336;
+        padding: 5px 5px;
+        margin: 2px 2px;
+        text-align: center;
+        display: block;
+        /*text-transform: uppercase;*/
+        letter-spacing: 1px;
+
+        /*  font-size: 13px;*/
+    }
+    .link-btn:hover {
+        background: #f44336;
+        color: white;
+    }
+</style>
+
+
+<script>
+    function Print()
+    {
+        window.print();
+    }
+</script>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Marsvine Service</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="../Controller/OpdaterEmail.php">Opdater Email <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item bg-info">
+                <a class="nav-link " href="#" onclick="Print()">Print</a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+
+{% block body %}
+
+
+    {% for entry in blog_entries %}
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.body }}</p>
+    {% endfor %}
+
+    <div class="container" style="padding-top: 65px">
+        <table class="table table-striped" data-toggle="table" data-click-to-select="true">
+            <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Measurement(dB)</th>
+                <th>Picture</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for a in Pidata %}
+                {% if a.dB > 49 %}
+                <tr class="table-danger">
+                    <td><strong><a class="link-btn" href = "../Controller/SletData.php?id={{ a.Id }}">Slet Row</a></strong></td>
+                    <td><strong>{{ a.Id }}</td>
+                    <td><strong>{{ a.DateTime }}</td>
+                    <td><strong>{{ a.dB }}</td>
+                        <td><img src="{{ a.ImageLink }}" width="300" height="300"></td>
+                </tr>
+                    {% else %}
+                        <tr>
+                            <th><a class="link-btn" href = "../Controller/SletData.php?id={{ a.Id }}">Slet Row</a></th>
+                            <td><strong>{{ a.Id }}</td>
+                            <td><strong>{{ a.DateTime }}</td>
+                            <td><strong>{{ a.dB }}</td>
+                            <td></td>
+                        </tr>
+
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+
+
+
+</body>
+</html>
