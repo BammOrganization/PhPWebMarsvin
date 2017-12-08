@@ -19,5 +19,6 @@ $jsondata = curl_exec($ch);
 $theDeletedTeacher = json_decode($jsondata, true);
 
 $host = $_SERVER['HTTP_HOST'];
-header("Location: http://{$host}/MarsvineWebPage/Controller/");
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+//header("Location: http://{$host}/PhPWebMarsvin/Controller/index.php");
 return;
