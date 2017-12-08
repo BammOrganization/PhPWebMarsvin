@@ -9,14 +9,50 @@
 <body>
 
 
+    <style>
+        /* http://www.thesepapersites.com/2016/10/18/style-html-link-button/ */
+    .link-btn {
+        font-size: 15px;
+        padding: 5px 5px;
+        margin: 2px 2px;
+        text-align: center;
+        display: block;
+        /*text-transform: uppercase;*/
+        letter-spacing: 1px;
+
+        /*  font-size: 13px;*/
+    }
+</style>
 
 
-<form action="../Controller/DoOpdaterEmail.php" method="get">
-    nuværende email: <input type="text" name="mail" value="{{ Userinfo.Mail }}" readonly> <br>
-    ny email: <input type="text" name="nyemail"> <br>
 
-    <input type="submit" value="Opdater">
-</form>
+
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" >
+    <a class="navbar-brand" href="#">Marsvine Service</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="../Controller/index.php">Tilbage<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div style="padding-top: 65px">
+    <form action="../Controller/DoOpdaterEmail.php" method="get" class="link-btn">
+        nuværende email: <input type="text" name="mail" value="{{ Userinfo.Mail }}" readonly> <br>
+        ny email: <input type="text" name="nyemail"> <br>
+
+        <input type="submit" value="Opdater" class="btn" >
+    </form>
+
+</div>
+
 
 
 
